@@ -6,8 +6,20 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Network GameOfLife = new Network();
-        GameOfLife.networkPrint();
+        Grid simulation = new NodeField();
+        simulation.gridPrint();
+        simulation.loadFunnyFigure();
+        simulation.gridPrint();
+
+
+        int i = 0;
+        while (i < 1) {
+            i++;
+            simulation.gridNextStep();
+            simulation.gridPrint();
+
+        }
+
 
 
 
