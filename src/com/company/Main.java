@@ -1,22 +1,38 @@
 package com.company;
 
+import java.util.Scanner;
+import java.awt.*;
+import javax.swing.*;
+
 public class Main {
 
 
     public static void main(String[] args) {
 
-
+        Window game = new Window();
+        game.createFrame();
         Grid simulation = new NodeField();
         simulation.gridPrint();
         simulation.loadFunnyFigure();
         simulation.gridPrint();
 
+        Scanner scanner = new Scanner(System.in);
+        String readString = scanner.nextLine();
 
-        int i = 0;
-        while (i < 1) {
-            i++;
-            simulation.gridNextStep();
-            simulation.gridPrint();
+
+        while(readString != null) {
+
+            if (readString.isEmpty()) {
+                simulation.gridNextStep();
+                simulation.gridPrint();
+            }
+
+            if (scanner.hasNextLine()) {
+                readString = scanner.nextLine();
+            } else {
+                readString = null;
+            }
+
 
         }
 

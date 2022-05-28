@@ -1,7 +1,5 @@
 package com.company;
 
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +40,7 @@ public class NodeField implements Grid {
 
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                survivalCheck(getNode(j, i), getNeighbours(j,i));
+              survivalCheck(getNode(i,j),getNeighbours(i,j));
             }
         }
 
@@ -52,11 +50,17 @@ public class NodeField implements Grid {
 
     public void loadFunnyFigure() {
 
-        getNode(2,1).setStatus(true);
+        getNode(1,2).setStatus(true);
         getNode(2,2).setStatus(true);
-        getNode(2,3).setStatus(true);
+        getNode(3,2).setStatus(true);
+        getNode(3, 1).setStatus(true);
+        getNode(2, 0).setStatus(true);
 
 
+
+        getNode(14, 11).setStatus(true);
+        getNode(14, 10).setStatus(true);
+        getNode(14, 9).setStatus(true);
         updateField();
     }
 
@@ -83,7 +87,7 @@ public class NodeField implements Grid {
         return neighbours;
     }
 
-    private void survivalCheck(Node nodeCheck, ArrayList<Node> neighbours) {
+    private int survivalCheck(Node nodeCheck, ArrayList<Node> neighbours) {
 
         int aliveNodes = 0;
 
@@ -93,15 +97,18 @@ public class NodeField implements Grid {
             }
         }
 
-        System.out.print(aliveNodes);
-        if (aliveNodes < 2 || aliveNodes > 3) {
-            nodeCheck.setStatus(false);
-        } else if (aliveNodes == 2 || aliveNodes == 3) {
+        if (nodeCheck.lifeCheck() && (aliveNodes == 2 || aliveNodes == 3)) {
+            //Will stay alive until next step, do nothing
+        }
+        else if (nodeCheck.lifeCheck() == false && aliveNodes == 3) {
             nodeCheck.setStatus(true);
         } else {
             nodeCheck.setStatus(false);
         }
 
+
+
+        return aliveNodes;
 
     }
 
