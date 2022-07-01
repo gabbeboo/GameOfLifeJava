@@ -4,13 +4,12 @@ import java.util.Scanner;
 import java.awt.*;
 import javax.swing.*;
 
-public class Main {
+public class Main extends JFrame {
 
 
     public static void main(String[] args) {
 
-        Window game = new Window();
-        game.createFrame();
+        initializeUi();
         Grid simulation = new NodeField();
         simulation.gridPrint();
         simulation.loadFunnyFigure();
@@ -39,5 +38,27 @@ public class Main {
 
 
 
+
+    }
+
+    private static void initializeUi() {
+
+        JFrame grid = new JFrame();
+        grid.setSize(800,800);
+        grid.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        grid.setVisible(true);
+
+        JPanel menu = new JPanel();
+        menu.setSize(500,500);
+        JButton star = new JButton("Star");
+        JButton sephamore = new JButton("Sephamore");
+        JButton glider = new JButton("Glider");
+        JButton reset = new JButton("Reset");
+
+        menu.add(star);
+        menu.add(sephamore);
+        menu.add(glider);
+        menu.add(reset);
+        grid.add(menu);
     }
 }
